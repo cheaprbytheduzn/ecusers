@@ -33,7 +33,7 @@ Include `ecusers` in your node's `run_list`:
   ]
 }
 ```
-Apply the `cleanup` recipe to remove the users.  E.g. on your, node override the run_list temporarily:
+Apply the `cleanup` recipe to remove the users.  E.g. on your node, override the run_list temporarily:
 
 ```bash
 chef-client --once -o "recipe[ecusers::cleanup]" ...
