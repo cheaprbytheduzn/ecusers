@@ -1,41 +1,42 @@
 # Cookbook Name:: ecusers
 # Recipe:: cleanup
 #
-# Copyright 2014, Hewlett-Packard
-#
-# All rights reserved - Do Not Redistribute
-#
 # Remove Enterprise Chef users
 
 pgsql =  {
    'name' => 'opscode-pgsql',
-   'id' => node['ecusers']['ec-pgsql-id'],
-   'group' => node['ecusers']['ec-pgsql-gid'],
-   'home' => '/var/opt/opscode/postgresql',
-   'shell' => '/bin/nologin'}
+   'group' => node['ecusers']['ec-pgsql-gid']
+}
 nagios = {
    'name' => 'opscode-nagios',
-   'id' => node['ecusers']['ec-nagios-id'],
-   'group' => node['ecusers']['ec-nagios-gid'],
-   'home' => '/var/opt/opscode/nagios',
-   'shell' => '/bin/nologin'}
+   'group' => node['ecusers']['ec-nagios-gid']
+}
 nagios_cmd = {
    'name' => 'opscode-nagios-cmd',
-   'id' => node['ecusers']['ec-nagios-cmd-id'],
-   'group' => node['ecusers']['ec-nagios-cmd-gid'],
-   'home' => '/var/opt/opscode/nagios',
-   'shell' => '/bin/nologin'}
+   'group' => node['ecusers']['ec-nagios-cmd-gid']
+}
 
-users = [ pgsql, nagios, nagios_cmd ]
+users = [pgsql, nagios, nagios_cmd]
 
-puts users.inspect
+support_features = {}
+support_features[:manage_home] = node['ecusers']['manage-home-dir']
 users.each do |ecu|
   user ecu['name']  do
-    uid ecu['id']
     action :remove
+    supports support_features
   end
   group ecu['name'] do
     gid ecu['group']
+    action :remove
+  end
+end
+
+if node['ecusers']['manage-opscode-user'] == true
+  user 'opscode' do
+    action :remove
+    supports support_features
+  end
+  group 'opscode' do
     action :remove
   end
 end

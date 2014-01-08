@@ -1,5 +1,5 @@
 name             'ecusers'
-maintainer       'Ken Miles
+maintainer       'Ken Miles'
 maintainer_email 'cheaprbytheduzn@gmail.com'
 license          'All rights reserved'
 description      'Creates/Configures users needed for Enterprise Chef'
