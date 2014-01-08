@@ -15,25 +15,9 @@ Attributes
 See attributes/default.rb for details
 
 Highlights:
-`['ecusers']['manage-opscode-user']` - Whether to manage the user 'opscode'.  (Default: `true`)
-`['ecusers']['manage-home-dir']` - Whether to delete the users home directory when the `cleanup` recipe is applied.  (Default:  `true`)
 
-
-#### ecusers::default
-<table>
-  <tr>
-    <th>Key</th>
-    <th>Type</th>
-    <th>Description</th>
-    <th>Default</th>
-  </tr>
-  <tr>
-    <td><tt>['ecusers']['manage-opscode-user']</tt></td>
-    <td>Boolean</td>
-    <td>whether to manage the user 'opscode' </td>
-    <td><tt>true</tt></td>
-  </tr>
-</table>
+* `['ecusers']['manage-opscode-user']` - Whether to manage the user 'opscode'.  (Default: `true`)
+* `['ecusers']['manage-home-dir']` - Whether to delete the users home directory when the `cleanup` recipe is applied.  (Default: `true`)
 
 Usage
 -----
@@ -49,7 +33,7 @@ Include `ecusers` in your node's `run_list`:
   ]
 }
 ```
-Apply the `cleanup` recipe to remove the users.  E.g. on your node override the run_list temporarily:
+Apply the `cleanup` recipe to remove the users.  E.g. on your, node override the run_list temporarily:
 
 ```bash
 chef-client --once -o "recipe[ecusers::cleanup]" ...
