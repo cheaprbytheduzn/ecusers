@@ -7,16 +7,8 @@ pgsql =  {
    'name' => 'opscode-pgsql',
    'group' => node['ecusers']['ec-pgsql-gid']
 }
-nagios = {
-   'name' => 'opscode-nagios',
-   'group' => node['ecusers']['ec-nagios-gid']
-}
-nagios_cmd = {
-   'name' => 'opscode-nagios-cmd',
-   'group' => node['ecusers']['ec-nagios-cmd-gid']
-}
 
-users = [pgsql, nagios, nagios_cmd]
+users = [pgsql]
 
 support_features = {}
 support_features[:manage_home] = node['ecusers']['manage-home-dir']

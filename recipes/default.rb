@@ -10,22 +10,8 @@ pgsql =  {
    'home' => node['ecusers']['ec-pgsql-home'],
    'shell' => node['ecusers']['ec-pgsql-shell']
 }
-nagios = {
-   'name' => 'opscode-nagios',
-   'id' => node['ecusers']['ec-nagios-id'],
-   'group' => node['ecusers']['ec-nagios-gid'],
-   'home' => node['ecusers']['ec-nagios-home'],
-   'shell' => node['ecusers']['ec-nagios-shell']
-}
-nagios_cmd = {
-   'name' => 'opscode-nagios-cmd',
-   'id' => node['ecusers']['ec-nagios-cmd-id'],
-   'group' => node['ecusers']['ec-nagios-cmd-gid'],
-   'home' => node['ecusers']['ec-nagios-cmd-home'],
-   'shell' => node['ecusers']['ec-nagios-cmd-shell']
-}
 
-users = [pgsql, nagios, nagios_cmd]
+users = [pgsql]
 
 node['ecusers']['parentdirs'].each do |dir|
   directory dir do
